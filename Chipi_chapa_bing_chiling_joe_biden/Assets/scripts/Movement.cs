@@ -25,6 +25,8 @@ public class NewBehaviourScript : MonoBehaviour
     private UnityEngine.KeyCode right = KeyCode.D;
     private UnityEngine.KeyCode jump = KeyCode.Space;
 
+    private UnityEngine.Rigidbody rb;
+
     int timer = 0;
     int cooldown = 300;
 
@@ -38,6 +40,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private bool gravity = true;
 
+    
  
     // Start is called before the first frame update
     void Start()
@@ -54,6 +57,8 @@ public class NewBehaviourScript : MonoBehaviour
         startPos.y += cameraYOffset;
         camera.transform.position = startPos;
         camera.transform.Rotate(cameraXRotation, 0, 0);
+
+        this.rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -82,8 +87,9 @@ public class NewBehaviourScript : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Y))
         {
+            UnityEngine.Vector3 vec = transform.forward;
             GameObject newBullet = Instantiate(bullet);
-            newBullet.transform.position = transform.position;
+            newBullet.transform.position = transform.position + vec * 2;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
             script.dmg = 10;
@@ -128,9 +134,18 @@ public class NewBehaviourScript : MonoBehaviour
             gravity = false;
 
         }
+
         y_velocity = 0;
 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            can_jump = true;
+            gravity = false;
+        }
+
+        
     }
+
 
     //private void OnCollisionStay(Collision collision)
     //{
@@ -149,8 +164,15 @@ public class NewBehaviourScript : MonoBehaviour
             can_jump = false;
             gravity = true;
         }
-        
-        
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = UnityEngine.Vector3.zero;
+            can_jump = false;
+            gravity = true;
+        }
 
     }
+
+
 }

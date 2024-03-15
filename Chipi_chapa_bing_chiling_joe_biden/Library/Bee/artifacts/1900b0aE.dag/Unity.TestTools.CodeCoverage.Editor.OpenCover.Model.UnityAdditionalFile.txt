@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+C:\Users\mikol\GK_Proj\Chipi_chapa_bing_chiling_joe_biden
+=======
 C:\Users\micha\Desktop\GK_Proj\Chipi_chapa_bing_chiling_joe_biden
+>>>>>>> 4aa0fe340859903df58ec01b3dd4573ad43c7ae5

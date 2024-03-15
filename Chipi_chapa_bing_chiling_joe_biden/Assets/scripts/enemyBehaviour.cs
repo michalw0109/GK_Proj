@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class enemy_behaviour : MonoBehaviour
+public class enemyBehaviour : MonoBehaviour
 {
 
 
@@ -11,8 +12,8 @@ public class enemy_behaviour : MonoBehaviour
     public float health = 30;
 
 
-
-    private GameObject player;
+    //Wymienilismy na public :)
+    public GameObject player;
 
 
     // Start is called before the first frame update
@@ -25,19 +26,16 @@ public class enemy_behaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(health <= 0)
         {
             Destroy(gameObject);
         }
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        transform.Translate(direction * speed);
 
-        
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        direction.y = 0;
+        transform.Translate(direction * speed);
         
     }
-
-
-
 }
