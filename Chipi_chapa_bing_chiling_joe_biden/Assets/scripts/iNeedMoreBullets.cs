@@ -13,12 +13,7 @@ public class iNeedMoreBullets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         Destroy(gameObject, 3f);
-=======
-        Destroy(gameObject, 20f);
-
->>>>>>> 4aa0fe340859903df58ec01b3dd4573ad43c7ae5
     }
 
     // Update is called once per frame
