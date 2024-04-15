@@ -78,6 +78,7 @@ public class NewBehaviourScript : MonoBehaviour
         z_velocity = 0;
         // Movement
         
+        
 
         if (Input.GetKeyDown(jump) && can_jump)
         {
@@ -88,8 +89,9 @@ public class NewBehaviourScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Y))
         {
             UnityEngine.Vector3 vec = transform.forward;
+            vec.y += 0.5f;
             GameObject newBullet = Instantiate(bullet);
-            newBullet.transform.position = transform.position + vec * 2;
+            newBullet.transform.position = transform.position + vec * 2.5f;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
             script.dmg = 10;
@@ -101,22 +103,26 @@ public class NewBehaviourScript : MonoBehaviour
         y_rotation = Input.GetAxis("Horizontal");
         y_rotation *= rotationspeed / 100;
         
-        if (gravity)
-        {
-            y_velocity -= gravityForce / 10000;
-        }
+        //if (gravity)
+        //{
+        //    y_velocity -= gravityForce / 5000;
+        //}
         transform.Translate(0, y_velocity, z_velocity);
-        if(transform.position.y < 2.95f)
-        {
-            //gravity = false;
-            transform.position = new UnityEngine.Vector3(transform.position.x,3.05f,transform.position.z);
-        }
+        //if(transform.position.y < 2.95f)
+        //{
+        //    //gravity = false;
+        //    transform.position = new UnityEngine.Vector3(transform.position.x,3.05f,transform.position.z);
+        //}
        
 
         camera.transform.position = transform.position;
         camera.transform.Translate(0, cameraYOffset, caleraZOffset);
 
-        
+        //if (Input.GetKeyDown(forward))
+        //{
+        //    
+        //}
+
         transform.Rotate(0, y_rotation, 0);
         camera.transform.RotateAround(transform.position, UnityEngine.Vector3.up, y_rotation);
 
@@ -143,7 +149,8 @@ public class NewBehaviourScript : MonoBehaviour
             gravity = false;
         }
 
-        
+     
+
     }
 
 
