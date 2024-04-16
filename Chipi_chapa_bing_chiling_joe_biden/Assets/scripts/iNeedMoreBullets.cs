@@ -28,6 +28,7 @@ public class iNeedMoreBullets : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             enemyBehaviour script = collision.gameObject.GetComponent<enemyBehaviour>();
+
             if (script != null)
             {
                 script.health -= dmg;

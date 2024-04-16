@@ -10,6 +10,7 @@ public class enemyBehaviour : MonoBehaviour
 
     public float speed = 0.01f;
     public float health = 30;
+    public GameObject scoreManager;
 
 
     //Wymienilismy na public :)
@@ -21,8 +22,6 @@ public class enemyBehaviour : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         health = 30;
-
-
     }
 
     // Update is called once per frame
@@ -30,6 +29,9 @@ public class enemyBehaviour : MonoBehaviour
     {
         if(health <= 0)
         {
+            ScoreManager script = scoreManager.GetComponent<ScoreManager>();
+            script.AddPoint();
+
             Destroy(gameObject);
         }
 

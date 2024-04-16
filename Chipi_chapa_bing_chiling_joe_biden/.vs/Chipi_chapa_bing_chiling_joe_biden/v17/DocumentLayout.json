@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|c:\\users\\ja\\desktop\\gk_proj\\chipi_chapa_bing_chiling_joe_biden\\assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|solutionrelative:assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|c:\\users\\ja\\desktop\\gk_proj\\chipi_chapa_bing_chiling_joe_biden\\assets\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\iNeedMoreBullets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\iNeedMoreBullets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemyBehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|solutionrelative:Assets\\scripts\\enemyBehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|c:\\users\\ja\\desktop\\gk_proj\\chipi_chapa_bing_chiling_joe_biden\\assets\\scripts\\enemybehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|solutionrelative:assets\\scripts\\enemybehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|c:\\users\\ja\\desktop\\gk_proj\\chipi_chapa_bing_chiling_joe_biden\\assets\\scripts\\enemy2behaviour.cs.meta||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{4B401456-61D2-4B29-F6FF-3551790A5AD1}|Meryel.CodeAssist.Editor.csproj|solutionrelative:assets\\scripts\\enemy2behaviour.cs.meta||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemy2Behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|solutionrelative:Assets\\scripts\\enemy2Behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemy2Behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\enemy2Behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\assets\\scripts\\ineedmorebullets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92257C14-1E2E-8701-C885-C7B02B52E44A}|Assembly-CSharp.Player.csproj|solutionrelative:assets\\scripts\\ineedmorebullets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,25 +35,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ScoreManager.cs",
+              "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\ScoreManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ScoreManager.cs",
+              "ToolTip": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\ScoreManager.cs",
+              "RelativeToolTip": "Assets\\ScoreManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T19:45:49.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Movement.cs",
               "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\Movement.cs",
               "ToolTip": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\Movement.cs",
               "RelativeToolTip": "Assets\\scripts\\Movement.cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAQwAwAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T11:29:23.564Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "enemyBehaviour.cs",
               "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemyBehaviour.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\enemyBehaviour.cs",
               "ToolTip": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemyBehaviour.cs",
               "RelativeToolTip": "Assets\\scripts\\enemyBehaviour.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBYAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T11:29:11.709Z",
               "EditorCaption": ""
@@ -61,19 +74,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "enemy2Behaviour.cs.meta",
-              "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemy2Behaviour.cs.meta",
-              "RelativeDocumentMoniker": "Assets\\scripts\\enemy2Behaviour.cs.meta",
-              "ToolTip": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemy2Behaviour.cs.meta",
-              "RelativeToolTip": "Assets\\scripts\\enemy2Behaviour.cs.meta",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-04-12T11:29:09.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "enemy2Behaviour.cs",
               "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\enemy2Behaviour.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\enemy2Behaviour.cs",
@@ -86,16 +86,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "iNeedMoreBullets.cs",
               "DocumentMoniker": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\iNeedMoreBullets.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\iNeedMoreBullets.cs",
               "ToolTip": "C:\\Users\\ja\\Desktop\\GK_Proj\\Chipi_chapa_bing_chiling_joe_biden\\Assets\\scripts\\iNeedMoreBullets.cs",
               "RelativeToolTip": "Assets\\scripts\\iNeedMoreBullets.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAUAAAAtAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T14:56:18.471Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-14T14:56:18.471Z"
             }
           ]
         }

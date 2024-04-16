@@ -354,10 +354,12 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.21f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.21f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Lowpoly Toon Cat Lite/Demo/Cat_Lite_Demo.cs"
+"Assets/playerHealth.cs"
 "Assets/scripts/enemy2Behaviour.cs"
 "Assets/scripts/enemyBehaviour.cs"
 "Assets/scripts/iNeedMoreBullets.cs"
 "Assets/scripts/Movement.cs"
+"Assets/scripts/ScoreManager.cs"
 -langversion:9.0
 
 /deterministic

@@ -40,8 +40,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     private bool gravity = true;
 
-    
- 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,6 +173,5 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
     }
-
 
 }
