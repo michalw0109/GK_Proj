@@ -98,8 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72488d40f585fbd45bc3692c6ccb3abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 3
   health: 30
+  gravityForce: 15
+  rb: {fileID: 0}
   player: {fileID: 0}
 --- !u!136 &4795979476489524307
 CapsuleCollider:
@@ -120,8 +122,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
+  m_Radius: 0.64
+  m_Height: 2.24
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3378821017056355175
@@ -149,5 +151,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0

@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829992236479214593}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.016715495, y: -0.01732833, z: -0.017594367, w: 0.99955535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.7, y: 4.4, z: -9.6}
   m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 1.88, y: -2.02, z: -2.05}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8099430638221572017
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,9 +109,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6262561050000830507
 MonoBehaviour:
@@ -125,16 +125,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9ea2411be59da49b039570bff23a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
-  jumpspeed: 5
-  rotationspeed: 26
-  gravityForce: 2.09
+  movespeed: 12
+  jumpspeed: 40
+  rotationspeed: 40
+  gravityForce: 15
   camera: {fileID: 0}
   caleraZOffset: -6.65
-  cameraYOffset: 1.91
-  cameraXRotation: 18
+  cameraYOffset: 3.12
+  cameraXRotation: 22.8
   bullet: {fileID: 6618982346155480692, guid: 79f00f4a15c661443a49787d30f81cd2, type: 3}
   enemy: {fileID: 0}
+  box: {fileID: 0}
+  czerwony: {fileID: 0}
+  czarny: {fileID: 0}
+  timing: 0.1
+  enemyCooldown: 5
 --- !u!65 &3140214350070474880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -154,5 +159,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.93, z: 4.85}
-  m_Center: {x: 0, y: 1.45, z: -0.56}
+  m_Size: {x: 1, y: 2.93, z: 3.23}
+  m_Center: {x: 0, y: 1.45, z: 0.17}

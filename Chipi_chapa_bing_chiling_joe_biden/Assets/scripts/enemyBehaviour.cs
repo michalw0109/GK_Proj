@@ -8,11 +8,12 @@ public class enemyBehaviour : MonoBehaviour
 {
 
 
-    public float speed = 0.01f;
+    public float speed = 1;
     public float health = 30;
+    public float gravityForce = 10;
 
+    public UnityEngine.Rigidbody rb;
 
-    //Wymienilismy na public :)
     public GameObject player;
 
 
@@ -21,9 +22,14 @@ public class enemyBehaviour : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         health = 30;
+        rb = GetComponent<Rigidbody>();
 
 
     }
+
+    
+    
+    
 
     // Update is called once per frame
     public void Update()
@@ -33,9 +39,15 @@ public class enemyBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Vector3 direction = (player.transform.position - transform.position).normalized;
+        UnityEngine.Vector3 direction = (player.transform.position - transform.position).normalized;
         direction.y = 0;
-        transform.Translate(direction * speed);
-        
+        rb.velocity = direction * speed;
+
+
+        rb.AddForce(transform.up * -gravityForce);
+
+        //Debug.Log(direction);
+
+
     }
 }
