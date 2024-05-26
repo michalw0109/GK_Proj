@@ -123,9 +123,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   health: 30
-  gravityForce: 20
+  gravityForce: 100
+  goldReward: 10
   rb: {fileID: 0}
   player: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!54 &3378821017056355175
 Rigidbody:
   m_ObjectHideFlags: 0

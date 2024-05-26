@@ -6,13 +6,14 @@ using UnityEngine;
 public class iNeedMoreBullets : MonoBehaviour
 {
 
-    public float speed;
+    private float speed;
     public float dmg;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        speed = 0.05f;
         Destroy(gameObject, 3f);
     }
 

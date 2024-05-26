@@ -442,8 +442,10 @@
 "Assets/scripts/ciachanieMieczem.cs"
 "Assets/scripts/enemy2Behaviour.cs"
 "Assets/scripts/enemyBehaviour.cs"
+"Assets/scripts/gameStart.cs"
 "Assets/scripts/iNeedMoreBullets.cs"
 "Assets/scripts/Movement.cs"
+"Assets/scripts/spinToWin.cs"
 -langversion:9.0
 
 /deterministic

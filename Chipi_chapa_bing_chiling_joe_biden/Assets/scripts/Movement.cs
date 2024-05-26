@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityStandardAssets.Vehicles.Car;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -12,20 +13,25 @@ public class NewBehaviourScript : MonoBehaviour
     public float jumpspeed; // Force applied when jumping
     public float rotationspeed;
     public float gravityForce;
-    public GameObject camera;
+    private GameObject camera;
+    public GameObject cameraPreset;
+
     public float caleraZOffset;
     public float cameraYOffset;
     public float cameraXRotation;
     public GameObject bullet;
     public GameObject sword;
-    public GameObject enemy;
-    public GameObject box;
+    public GameObject dagger;
+    public GameObject enemy1;
+    public GameObject enemy2;
+    private GameObject box;
+    public GameObject boxPreset;
+
     public Material czerwony;
     public Material czarny;
-    public GameObject musicBox;
+    private GameObject musicBox;
+    public GameObject musicBoxPreset;
 
-    private List<GameObject> bullets = new List<GameObject>();
-    private List<GameObject> swords = new List<GameObject>();
 
 
     private UnityEngine.KeyCode forward = KeyCode.W;
@@ -65,6 +71,8 @@ public class NewBehaviourScript : MonoBehaviour
     private int songSetupCounter = 0;
 
     private int combo = 0;
+    private int specialCombo = 0;
+
     private float multipleHitTimer;
     private bool alreadyHitForMultiple = false;
 
@@ -72,10 +80,23 @@ public class NewBehaviourScript : MonoBehaviour
     private bool alreadyHitForNoHit = false;
 
 
+    public int hp = 100;
+    public int gold = 0;
+
+    private int shootLvl = 1;
+    private int slashLvl = 1;
+    private int spinLvl = 1;
+    private int healLvl = 1;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        camera = Instantiate(cameraPreset);
+        box = Instantiate(boxPreset);
+        musicBox = Instantiate(musicBoxPreset);
 
         UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, 4, 3);
         UnityEngine.Vector3 startRot = new UnityEngine.Vector3(0, 0, 0);
@@ -115,12 +136,26 @@ public class NewBehaviourScript : MonoBehaviour
 
         attacksAndCombo();
 
+        upgradeHub();
+
         movement();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            enemyBehaviour script = collision.gameObject.GetComponent<enemyBehaviour>();
+            if (script != null)
+            {
+                hp -= script.dmg;
+                if(hp < 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
+
+        }
 
     }
 
@@ -173,8 +208,11 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (timer > nextEnemy)
         {
-            GameObject newEnemy = Instantiate(enemy);
-            newEnemy.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
+            GameObject newEnemy1 = Instantiate(enemy1);
+            GameObject newEnemy2 = Instantiate(enemy2);
+
+            newEnemy1.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
+            newEnemy2.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
 
             nextEnemy += enemyCooldown;
         }
@@ -221,8 +259,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void attacksAndCombo()
     {
+        
 
-        // reset timerow
+
+        // reset timer
         if (multipleHitTimer > 2 * timing)
         {
             alreadyHitForMultiple = false;
@@ -237,15 +277,95 @@ public class NewBehaviourScript : MonoBehaviour
         // setup do atakow
         shoot();
         slash();
+        spin();
+        heal();
 
         // czy w tamtym bicie aby nie bylo ataku
         if (nextBeat - timer < bpm - timing && nextBeat - timer > timing && !alreadyHitForNoHit)
         {
+
             combo = 0;
+            specialCombo = 0;
         }
 
     }
 
+    private void checkAttackInBeat(char source)
+    {
+        // check czy trafienie dobrze siad³o
+        if (nextBeat - timer > bpm - timing || nextBeat - timer < timing)
+        {
+            // czy w tym bicie juz byl atak
+            if (alreadyHitForMultiple)
+            {
+                combo = 0;
+                specialCombo = 0;
+            }
+
+            checkSpecialCombo(source);
+
+            combo++;
+            alreadyHitForMultiple = true;
+            alreadyHitForNoHit = true;
+            multipleHitTimer = 0;
+            noHitTimer = 0;
+        }
+        else
+        {
+            // nie trafilismy
+            combo = 0;
+            specialCombo = 0;
+
+        }
+    }
+
+    private void checkSpecialCombo(char source)
+    {
+        if (specialCombo == 0 || specialCombo == 1)
+        {
+            if (source == 'Y')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 2 || specialCombo == 3)
+        {
+            if (source == 'U')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 4 || specialCombo == 5)
+        {
+            if (source == 'I')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 6 || specialCombo == 7)
+        {
+            if (source == 'O')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+    }
     private void shoot()
     {
         if (Input.GetKeyDown(KeyCode.Y))
@@ -257,21 +377,19 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
-            Debug.Log(combo);
 
             // tu sprawdzenie do comba
-            checkAttackInBeat();
+            checkAttackInBeat('Y');
 
-            
+            Debug.Log(specialCombo);
+
             UnityEngine.Vector3 vec = transform.forward;
             vec.y += 0.5f;
             GameObject newBullet = Instantiate(bullet);
             newBullet.transform.position = transform.position + vec * 2.5f;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
-            script.dmg = 10;
-            script.speed = 0.05f;
-            bullets.Add(bullet);
+            script.dmg = 10 * shootLvl + combo;
         }
     }
 
@@ -286,13 +404,16 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
-            Debug.Log(combo);
+            //Debug.Log(combo);
+
+
 
             // tu sprawdzenie do comba
-            checkAttackInBeat();
+            checkAttackInBeat('U');
+            Debug.Log(specialCombo);
 
-            
-            UnityEngine.Vector3 vec = transform.forward + transform.right;
+
+            UnityEngine.Vector3 vec = 1.7f * transform.forward + 0.8f * transform.right;
             vec.y += 0.5f;
             GameObject newSword = Instantiate(sword);
             newSword.transform.position = transform.position + vec * 2.5f;
@@ -300,32 +421,116 @@ public class NewBehaviourScript : MonoBehaviour
             newSword.transform.Rotate(90, 0, 0);
 
             ciachanieMieczem script = newSword.GetComponent<ciachanieMieczem>();
-            script.dmg = 10;
-            swords.Add(sword);
+            script.dmg = 30 + 20 * slashLvl + combo;
 
         }
     }
 
-    private void checkAttackInBeat()
+    private void spin()
     {
-        // check czy trafienie dobrze siad³o
-        if (nextBeat - timer > bpm - timing || nextBeat - timer < timing)
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            // czy w tym bicie juz byl atak
-            if (alreadyHitForMultiple)
+            // check do spamownia
+            if (attackTimer < attackCooldown)
             {
-                combo = 0;
+                return;
             }
-            combo++;
-            alreadyHitForMultiple = true;
-            alreadyHitForNoHit = true;
-            multipleHitTimer = 0;
-            noHitTimer = 0;
+            attackTimer = 0;
+
+
+            // tu sprawdzenie do comba
+            checkAttackInBeat('I');
+            Debug.Log(specialCombo);
+
+
+            UnityEngine.Vector3 vec = 1.5f * transform.forward;
+            vec.y += 0.5f;
+            GameObject newDagger = Instantiate(dagger);
+            newDagger.transform.position = transform.position + vec * 2.5f;
+            newDagger.transform.rotation = transform.rotation;
+            newDagger.transform.Rotate(90, 0, 0);
+
+            spinToWin script = newDagger.GetComponent<spinToWin>();
+            script.dmg = 30 + 20 * spinLvl + combo;
+
         }
-        else
+    }
+
+    private void heal()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            // nie trafilismy
-            combo = 0;
+            // check do spamownia
+            if (attackTimer < attackCooldown)
+            {
+                return;
+            }
+            attackTimer = 0;
+
+
+            // tu sprawdzenie do comba
+            checkAttackInBeat('O');
+            Debug.Log(specialCombo);
+
+
+            hp += 10 * healLvl + combo;
+
+        }
+    }
+
+
+    private void upgradeHub()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            upgrade('Y');
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            upgrade('U');
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            upgrade('I');
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            upgrade('O');
+        }
+    }
+    private void upgrade(char attackType)
+    {
+        switch (attackType)
+        {
+            case 'Y':
+                if(gold >= 100 * shootLvl)
+                {
+                    gold -= 100 * shootLvl;
+                    shootLvl++;
+                }
+                break;
+            case 'U':
+                if (gold >= 100 * slashLvl)
+                {
+                    gold -= 100 * slashLvl;
+                    slashLvl++;
+                }
+                break;
+            case 'I':
+                if (gold >= 100 * spinLvl)
+                {
+                    gold -= 100 * spinLvl;
+                    spinLvl++;
+                }
+                break;
+            case 'O':
+                if (gold >= 100 * healLvl)
+                {
+                    gold -= 100 * healLvl;
+                    healLvl++;
+                }
+                break;
+
         }
     }
 

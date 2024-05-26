@@ -8,10 +8,9 @@ public class enemy2Behaviour : enemyBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        speed = 0.6f;
-        health = 10;
         rb = GetComponent<Rigidbody>();
-
+        playerScript = player.GetComponent<NewBehaviourScript>();
+        distance = 1.3f;
     }
 
     // Update is called once per frame
