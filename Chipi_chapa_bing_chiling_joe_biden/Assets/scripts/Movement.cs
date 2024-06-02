@@ -22,6 +22,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject bullet;
     public GameObject sword;
     public GameObject dagger;
+    public GameObject plasma;
     public GameObject enemy1;
     public GameObject enemy2;
     private GameObject box;
@@ -61,6 +62,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float enemyCooldown = 5;
     private float nextEnemy = 0;
+    private float enemySpawnScaling = 0.98f;
+    private float minEnemyCooldown = 0.5f;
 
   
 
@@ -70,8 +73,8 @@ public class NewBehaviourScript : MonoBehaviour
     private int counter = 0;
     private int songSetupCounter = 0;
 
-    private int combo = 0;
-    private int specialCombo = 0;
+    public int combo = 0;
+    public int specialCombo = 0;
 
     private float multipleHitTimer;
     private bool alreadyHitForMultiple = false;
@@ -80,14 +83,21 @@ public class NewBehaviourScript : MonoBehaviour
     private bool alreadyHitForNoHit = false;
 
 
+
     public int hp = 100;
+    public int hpMax = 100;
     public int gold = 0;
+
+    public int hitCooldown = 2;
+    private float hitTimer = 0;
 
     private int shootLvl = 1;
     private int slashLvl = 1;
     private int spinLvl = 1;
     private int healLvl = 1;
+    private int piercingLvl = 1;
 
+    public int points = 0;
 
 
 
@@ -132,7 +142,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         songSetup();
 
-        someOtherTimer();
+        enemySpawn();
 
         attacksAndCombo();
 
@@ -148,11 +158,16 @@ public class NewBehaviourScript : MonoBehaviour
             enemyBehaviour script = collision.gameObject.GetComponent<enemyBehaviour>();
             if (script != null)
             {
-                hp -= script.dmg;
-                if(hp < 0)
+                if(hitTimer > hitCooldown)
                 {
-                    Destroy(gameObject);
+                    hp -= script.dmg;
+                    if (hp < 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                    hitTimer = 0;
                 }
+                
             }
 
         }
@@ -165,6 +180,7 @@ public class NewBehaviourScript : MonoBehaviour
         multipleHitTimer += Time.deltaTime;
         noHitTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
+        hitTimer += Time.deltaTime;
     }
     private void toTheBeat()
     {
@@ -204,7 +220,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    private void someOtherTimer()
+    private void enemySpawn()
     {
         if (timer > nextEnemy)
         {
@@ -215,6 +231,11 @@ public class NewBehaviourScript : MonoBehaviour
             newEnemy2.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
 
             nextEnemy += enemyCooldown;
+            enemyCooldown *= enemySpawnScaling;
+            if(enemyCooldown < minEnemyCooldown)
+            {
+                enemyCooldown = minEnemyCooldown;
+            }
         }
     }
 
@@ -279,6 +300,7 @@ public class NewBehaviourScript : MonoBehaviour
         slash();
         spin();
         heal();
+        piercing();
 
         // czy w tamtym bicie aby nie bylo ataku
         if (nextBeat - timer < bpm - timing && nextBeat - timer > timing && !alreadyHitForNoHit)
@@ -381,7 +403,7 @@ public class NewBehaviourScript : MonoBehaviour
             // tu sprawdzenie do comba
             checkAttackInBeat('Y');
 
-            Debug.Log(specialCombo);
+            //Debug.Log(specialCombo);
 
             UnityEngine.Vector3 vec = transform.forward;
             vec.y += 0.5f;
@@ -389,7 +411,8 @@ public class NewBehaviourScript : MonoBehaviour
             newBullet.transform.position = transform.position + vec * 2.5f;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
-            script.dmg = 10 * shootLvl + combo;
+            script.speed = 0.1f;
+            script.dmg = 3 * shootLvl + combo / 5;
         }
     }
 
@@ -410,7 +433,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             // tu sprawdzenie do comba
             checkAttackInBeat('U');
-            Debug.Log(specialCombo);
+            //Debug.Log(specialCombo);
 
 
             UnityEngine.Vector3 vec = 1.7f * transform.forward + 0.8f * transform.right;
@@ -421,7 +444,7 @@ public class NewBehaviourScript : MonoBehaviour
             newSword.transform.Rotate(90, 0, 0);
 
             ciachanieMieczem script = newSword.GetComponent<ciachanieMieczem>();
-            script.dmg = 30 + 20 * slashLvl + combo;
+            script.dmg = 20 + 4 * slashLvl + combo / 5;
 
         }
     }
@@ -440,7 +463,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             // tu sprawdzenie do comba
             checkAttackInBeat('I');
-            Debug.Log(specialCombo);
+            //Debug.Log(specialCombo);
 
 
             UnityEngine.Vector3 vec = 1.5f * transform.forward;
@@ -451,7 +474,7 @@ public class NewBehaviourScript : MonoBehaviour
             newDagger.transform.Rotate(90, 0, 0);
 
             spinToWin script = newDagger.GetComponent<spinToWin>();
-            script.dmg = 30 + 20 * spinLvl + combo;
+            script.dmg = 30 + 5 * spinLvl + combo / 5;
 
         }
     }
@@ -470,15 +493,45 @@ public class NewBehaviourScript : MonoBehaviour
 
             // tu sprawdzenie do comba
             checkAttackInBeat('O');
-            Debug.Log(specialCombo);
+            //Debug.Log(specialCombo);
 
 
-            hp += 10 * healLvl + combo;
+            hp += 2 * healLvl + combo / 5;
+            if ( hp > hpMax)
+            {
+                hp = hpMax;
+            }
 
         }
     }
 
+    private void piercing()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            // check do spamownia
+            if (attackTimer < attackCooldown)
+            {
+                return;
+            }
+            attackTimer = 0;
 
+
+            // tu sprawdzenie do comba
+            checkAttackInBeat('P');
+
+            //Debug.Log(specialCombo);
+
+            UnityEngine.Vector3 vec = transform.forward;
+            vec.y += 0.5f;
+            GameObject newPlasma = Instantiate(plasma);
+            newPlasma.transform.position = transform.position + vec * 2.5f;
+            newPlasma.transform.rotation = transform.rotation;
+            Piercing script = newPlasma.GetComponent<Piercing>();
+            script.speed = 0.05f;
+            script.dmg = 2 * piercingLvl + combo / 10;
+        }
+    }
     private void upgradeHub()
     {
         if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -496,6 +549,10 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             upgrade('O');
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            upgrade('P');
         }
     }
     private void upgrade(char attackType)
@@ -530,6 +587,13 @@ public class NewBehaviourScript : MonoBehaviour
                     healLvl++;
                 }
                 break;
+            case 'P':
+                if (gold >= 100 * piercingLvl)
+                {
+                    gold -= 100 * piercingLvl;
+                    piercingLvl++;
+                }
+                break;
 
         }
     }
@@ -540,6 +604,4 @@ public class NewBehaviourScript : MonoBehaviour
         float distance = 0.3f;
         can_jump = Physics.Raycast(transform.position + (UnityEngine.Vector3.up * 0.1f), UnityEngine.Vector3.down, out hitInfo, distance);
     }
-
-
 }

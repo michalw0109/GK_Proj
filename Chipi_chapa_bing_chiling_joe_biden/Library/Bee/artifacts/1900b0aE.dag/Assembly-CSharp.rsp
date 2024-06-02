@@ -446,7 +446,9 @@
 "Assets/scripts/gameStart.cs"
 "Assets/scripts/iNeedMoreBullets.cs"
 "Assets/scripts/Movement.cs"
+"Assets/scripts/Piercing.cs"
 "Assets/scripts/spinToWin.cs"
+"Assets/scripts/updateHud.cs"
 -langversion:9.0
 
 /deterministic

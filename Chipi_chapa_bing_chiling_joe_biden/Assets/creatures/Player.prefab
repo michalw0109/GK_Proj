@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9ea2411be59da49b039570bff23a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 12
+  movespeed: 15
   jumpspeed: 40
-  rotationspeed: 40
+  rotationspeed: 30
   gravityForce: 15
   cameraPreset: {fileID: 6718454935230983232, guid: ffacb62f298bcff468f0959f3bced26b, type: 3}
   caleraZOffset: -6.65
@@ -136,6 +136,7 @@ MonoBehaviour:
   bullet: {fileID: 6618982346155480692, guid: 79f00f4a15c661443a49787d30f81cd2, type: 3}
   sword: {fileID: 2572585246041971087, guid: dd81846c77df6734798dba7b82b37331, type: 3}
   dagger: {fileID: 6820603732935648573, guid: 17b170ce2a5de8a43b201ed448eb3fac, type: 3}
+  plasma: {fileID: 7102842858944739344, guid: f1177a774681d1842914af55ce2e0cdd, type: 3}
   enemy1: {fileID: 4254398952410720364, guid: f92298ad5302d0641a3553d9fd27f769, type: 3}
   enemy2: {fileID: 4254398952410720364, guid: 6a2ee523e3bf22a4aa0334fe3d705185, type: 3}
   boxPreset: {fileID: 6571595907219276105, guid: ea3d598c7789dc247bd327017a338608, type: 3}
@@ -145,8 +146,13 @@ MonoBehaviour:
   attackCooldown: 0.1
   timing: 0.12
   enemyCooldown: 3
+  combo: 0
+  specialCombo: 0
   hp: 100
+  hpMax: 100
   gold: 0
+  hitCooldown: 2
+  points: 0
 --- !u!65 &3140214350070474880
 BoxCollider:
   m_ObjectHideFlags: 0

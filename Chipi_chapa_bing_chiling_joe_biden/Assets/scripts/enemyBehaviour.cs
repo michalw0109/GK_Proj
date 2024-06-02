@@ -63,5 +63,6 @@ public class enemyBehaviour : MonoBehaviour
     public void rewardPlayer()
     {
         playerScript.gold += goldReward;
+        playerScript.points += playerScript.combo / 10 + goldReward;
     }
 }

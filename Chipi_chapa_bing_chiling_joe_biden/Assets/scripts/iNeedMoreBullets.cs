@@ -6,7 +6,7 @@ using UnityEngine;
 public class iNeedMoreBullets : MonoBehaviour
 {
 
-    private float speed;
+    public float speed;
     public float dmg;
 
 
