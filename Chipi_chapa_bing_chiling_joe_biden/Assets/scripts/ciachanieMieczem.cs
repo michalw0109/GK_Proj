@@ -32,7 +32,7 @@ public class ciachanieMieczem : MonoBehaviour
             }
             collision.gameObject.GetComponent<Transform>().Translate(0, 1, 0);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

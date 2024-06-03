@@ -436,7 +436,7 @@ public class NewBehaviourScript : MonoBehaviour
             //Debug.Log(specialCombo);
 
 
-            UnityEngine.Vector3 vec = 1.7f * transform.forward + 0.8f * transform.right;
+            UnityEngine.Vector3 vec = 1.9f * transform.forward + 0.8f * transform.right;
             vec.y += 0.5f;
             GameObject newSword = Instantiate(sword);
             newSword.transform.position = transform.position + vec * 2.5f;
