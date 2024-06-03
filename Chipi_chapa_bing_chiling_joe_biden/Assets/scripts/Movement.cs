@@ -108,7 +108,7 @@ public class NewBehaviourScript : MonoBehaviour
         box = Instantiate(boxPreset);
         musicBox = Instantiate(musicBoxPreset);
 
-        UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, 4, 3);
+        UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, -50, 3);
         UnityEngine.Vector3 startRot = new UnityEngine.Vector3(0, 0, 0);
 
         transform.position = startPos;
