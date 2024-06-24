@@ -13,7 +13,7 @@ public class iNeedMoreBullets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.05f;
+        //speed = 5f;
         Destroy(gameObject, 3f);
     }
 

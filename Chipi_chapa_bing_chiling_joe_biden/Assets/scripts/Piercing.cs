@@ -11,7 +11,7 @@ public class Piercing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.05f;
+        
         Destroy(gameObject, 6f);
     }
 

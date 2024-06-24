@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityStandardAssets.Vehicles.Car;
+
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -23,8 +17,12 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject sword;
     public GameObject dagger;
     public GameObject plasma;
+    public GameObject healing;
+    public GameObject dashing;
+    public GameObject bomb;
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject enemy3;
     private GameObject box;
     public GameObject boxPreset;
 
@@ -64,8 +62,9 @@ public class NewBehaviourScript : MonoBehaviour
     private float nextEnemy = 0;
     private float enemySpawnScaling = 0.98f;
     private float minEnemyCooldown = 0.5f;
+    private float enemyHealthScaling = 2f;
+    private float enemyHealthMult = 1;
 
-  
 
     private bool can_jump = true;
 
@@ -96,6 +95,8 @@ public class NewBehaviourScript : MonoBehaviour
     private int spinLvl = 1;
     private int healLvl = 1;
     private int piercingLvl = 1;
+    private int dashLvl = 1;
+    private int AOELvl = 1;
 
     public int points = 0;
 
@@ -105,10 +106,10 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         camera = Instantiate(cameraPreset);
-        box = Instantiate(boxPreset);
+        
         musicBox = Instantiate(musicBoxPreset);
 
-        UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, 4, 3);
+        UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, -50, 3);
         UnityEngine.Vector3 startRot = new UnityEngine.Vector3(0, 0, 0);
 
         transform.position = startPos;
@@ -127,7 +128,8 @@ public class NewBehaviourScript : MonoBehaviour
         musicBox.GetComponent<AudioSource>().Play();
         musicBox.GetComponent<AudioSource>().Stop();
 
-
+        box = Instantiate(boxPreset);
+        //box.transform.position = transform.position;
     }
 
     // Update is called once per frame
@@ -144,11 +146,14 @@ public class NewBehaviourScript : MonoBehaviour
 
         enemySpawn();
 
+
         attacksAndCombo();
 
         upgradeHub();
 
         movement();
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -207,11 +212,11 @@ public class NewBehaviourScript : MonoBehaviour
         // tylko do puszczania piosenki w dobry bit
         if (timer > nextSxtnhBeat)
         {
-            if (songSetupCounter % 4096 == 5)
+            if (songSetupCounter % 4096 == 3)
             {
                 musicBox.GetComponent<AudioSource>().Play();
             }
-            if (songSetupCounter % 4096 == 4)
+            if (songSetupCounter % 4096 == 2)
             {
                 musicBox.GetComponent<AudioSource>().Stop();
             }
@@ -224,14 +229,14 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (timer > nextEnemy)
         {
-            GameObject newEnemy1 = Instantiate(enemy1);
-            GameObject newEnemy2 = Instantiate(enemy2);
+            spawnEnemy(1);
+            spawnEnemy(2);
+            spawnEnemy(3);
 
-            newEnemy1.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
-            newEnemy2.transform.position = new UnityEngine.Vector3(Random.value * 30 - 15, 10, Random.value * 30 - 15);
 
             nextEnemy += enemyCooldown;
             enemyCooldown *= enemySpawnScaling;
+            enemyHealthMult *= enemyHealthScaling;
             if(enemyCooldown < minEnemyCooldown)
             {
                 enemyCooldown = minEnemyCooldown;
@@ -239,6 +244,57 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+
+    private void spawnEnemy(int nr)
+    {
+
+        int choice = (int)(Random.value * 4 + 1);
+        GameObject newEnemy;
+       
+        if(nr == 1)
+        {
+            newEnemy = Instantiate(enemy1);
+            enemyBehaviour enemyScript = newEnemy.GetComponent<enemyBehaviour>();
+            enemyScript.health *= enemyHealthMult;
+        }
+        else if(nr == 2)
+        {
+            newEnemy = Instantiate(enemy2);
+            enemy2Behaviour enemyScript = newEnemy.GetComponent<enemy2Behaviour>();
+            enemyScript.health *= enemyHealthMult;
+        }
+        else if(nr == 3)
+        {
+            newEnemy = Instantiate(enemy3);
+            enemy3Behaviour enemyScript = newEnemy.GetComponent<enemy3Behaviour>();
+            enemyScript.health *= enemyHealthMult;
+        }
+        else
+        {
+            newEnemy = Instantiate(enemy1);
+            enemyBehaviour enemyScript = newEnemy.GetComponent<enemyBehaviour>();
+            enemyScript.health *= enemyHealthMult;
+        }
+
+        
+
+        if (choice == 1)
+        {
+            newEnemy.transform.position = new UnityEngine.Vector3(-212, -50, -10);
+        }
+        else if (choice == 2)
+        {
+            newEnemy.transform.position = new UnityEngine.Vector3(72, -50, -55);
+        }
+        else if (choice == 3)
+        {
+            newEnemy.transform.position = new UnityEngine.Vector3(138, -50, -54);
+        }
+        else
+        {
+            newEnemy.transform.position = new UnityEngine.Vector3(35, -50, 122);
+        }
+    }
     private void movement()
     {
         // jump
@@ -299,8 +355,11 @@ public class NewBehaviourScript : MonoBehaviour
         shoot();
         slash();
         spin();
-        heal();
         piercing();
+        AOE();
+        heal();
+        dash();
+ 
 
         // czy w tamtym bicie aby nie bylo ataku
         if (nextBeat - timer < bpm - timing && nextBeat - timer > timing && !alreadyHitForNoHit)
@@ -345,7 +404,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (specialCombo == 0 || specialCombo == 1)
         {
-            if (source == 'Y')
+            if (source == 'R')
             {
                 specialCombo++;
             }
@@ -356,7 +415,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else if (specialCombo == 2 || specialCombo == 3)
         {
-            if (source == 'U')
+            if (source == 'T')
             {
                 specialCombo++;
             }
@@ -367,7 +426,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else if (specialCombo == 4 || specialCombo == 5)
         {
-            if (source == 'I')
+            if (source == 'Y')
             {
                 specialCombo++;
             }
@@ -378,6 +437,28 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else if (specialCombo == 6 || specialCombo == 7)
         {
+            if (source == 'U')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 8)
+        {
+            if (source == 'I')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 9)
+        {
             if (source == 'O')
             {
                 specialCombo++;
@@ -386,6 +467,35 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 specialCombo = 0;
             }
+        }
+        else if (specialCombo == 10 || specialCombo == 11)
+        {
+            if (source == 'Y')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 12 || specialCombo == 13 || specialCombo == 14 || specialCombo == 15)
+        {
+            if (source == 'P')
+            {
+                specialCombo++;
+            }
+            else
+            {
+                specialCombo = 0;
+            }
+        }
+        else if (specialCombo == 16)
+        {
+            combo += 50;
+            gold += 300;
+            points += 2000;
+            specialCombo = 0;
         }
     }
     private void shoot()
@@ -411,7 +521,7 @@ public class NewBehaviourScript : MonoBehaviour
             newBullet.transform.position = transform.position + vec * 2.5f;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
-            script.speed = 0.1f;
+            script.speed = 0.2f;
             script.dmg = 3 * shootLvl + combo / 5;
         }
     }
@@ -436,7 +546,7 @@ public class NewBehaviourScript : MonoBehaviour
             //Debug.Log(specialCombo);
 
 
-            UnityEngine.Vector3 vec = 1.7f * transform.forward + 0.8f * transform.right;
+            UnityEngine.Vector3 vec = 1.9f * transform.forward + 0.8f * transform.right;
             vec.y += 0.5f;
             GameObject newSword = Instantiate(sword);
             newSword.transform.position = transform.position + vec * 2.5f;
@@ -496,6 +606,8 @@ public class NewBehaviourScript : MonoBehaviour
             //Debug.Log(specialCombo);
 
 
+            GameObject newHeal = Instantiate(healing);
+
             hp += 2 * healLvl + combo / 5;
             if ( hp > hpMax)
             {
@@ -528,8 +640,70 @@ public class NewBehaviourScript : MonoBehaviour
             newPlasma.transform.position = transform.position + vec * 2.5f;
             newPlasma.transform.rotation = transform.rotation;
             Piercing script = newPlasma.GetComponent<Piercing>();
-            script.speed = 0.05f;
+            script.speed = 0.12f;
             script.dmg = 2 * piercingLvl + combo / 10;
+        }
+    }
+
+    private void dash()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // check do spamownia
+            if (attackTimer < attackCooldown)
+            {
+                return;
+            }
+            attackTimer = 0;
+
+
+            // tu sprawdzenie do comba
+            checkAttackInBeat('R');
+            //Debug.Log(specialCombo);
+
+            //UnityEngine.Vector3 vec = transform.forward;
+            //vec.y += 0.5f;
+
+            float direction = Input.GetAxis("Vertical");
+            if(direction != 0)
+            {
+                GameObject newDash = Instantiate(dashing);
+                newDash.transform.position = transform.position;
+                newDash.transform.rotation = transform.rotation;
+
+                transform.position = transform.position + (direction * transform.forward * 3 * dashLvl);
+            }
+            
+            //UnityEngine.Vector3 planeVelocity = -transform.forward * 2000 * dashLvl;
+            //rb.velocity = new UnityEngine.Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z) + planeVelocity;
+
+        }
+    }
+
+    private void AOE()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // check do spamownia
+            if (attackTimer < attackCooldown)
+            {
+                return;
+            }
+            attackTimer = 0;
+
+
+            // tu sprawdzenie do comba
+            checkAttackInBeat('T');
+
+            //Debug.Log(specialCombo);
+            UnityEngine.Vector3 vec2 = transform.forward;
+
+            UnityEngine.Vector3 vec = transform.up;
+            GameObject newBomb = Instantiate(bomb);
+            newBomb.transform.position = transform.position + vec * 4f + vec2 * 2f;
+            newBomb.transform.rotation = transform.rotation;
+            AOE script = newBomb.GetComponent<AOE>();
+            script.dmg = 3 * AOELvl + combo / 5;
         }
     }
     private void upgradeHub()
@@ -538,21 +712,29 @@ public class NewBehaviourScript : MonoBehaviour
         {
             upgrade('Y');
         }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             upgrade('U');
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             upgrade('I');
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             upgrade('O');
         }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             upgrade('P');
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            upgrade('R');
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            upgrade('T');
         }
     }
     private void upgrade(char attackType)
@@ -592,6 +774,20 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * piercingLvl;
                     piercingLvl++;
+                }
+                break;
+            case 'R':
+                if (gold >= 100 * dashLvl)
+                {
+                    gold -= 100 * dashLvl;
+                    dashLvl++;
+                }
+                break;
+            case 'T':
+                if (gold >= 100 * AOELvl)
+                {
+                    gold -= 100 * AOELvl;
+                    AOELvl++;
                 }
                 break;
 

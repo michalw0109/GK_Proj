@@ -7,12 +7,12 @@ using UnityEngine.UIElements;
 public class enemyBehaviour : MonoBehaviour
 {
 
-    public int dmg = 10;
-    public float speed = 1;
-    public float health = 30;
-    public float gravityForce = 10;
-    public int goldReward = 10;
-    public float distance = 1.3f;
+    public int dmg; 
+    public float speed;
+    public float health;
+    public float gravityForce;
+    public int goldReward;
+    public float distance;
 
 
     public UnityEngine.Rigidbody rb;
@@ -20,18 +20,32 @@ public class enemyBehaviour : MonoBehaviour
     public GameObject player;
     public NewBehaviourScript playerScript;
 
+    private UnityEngine.Vector3 direction;
+
+
+    private void Awake()
+    {
+        dmg = 10;
+        speed = 5;
+        health = 30;
+        gravityForce = 10;
+        goldReward = 10;
+        distance = 1.3f;
+    }
+
     // Start is called before the first frame update
     void Start()
+    {
+        setup();
+    }
+
+
+    public void setup()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
         playerScript = player.GetComponent<NewBehaviourScript>();
-
-
     }
-
-
-
 
 
     // Update is called once per frame
@@ -43,7 +57,7 @@ public class enemyBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
-        UnityEngine.Vector3 direction = (player.transform.position - transform.position).normalized;
+        direction = (player.transform.position - transform.position).normalized;
         direction.y = 0;
         rb.velocity = direction * speed;
 
@@ -62,7 +76,7 @@ public class enemyBehaviour : MonoBehaviour
 
     public void rewardPlayer()
     {
-        playerScript.gold += goldReward;
+        playerScript.gold += playerScript.combo / 10 + goldReward;
         playerScript.points += playerScript.combo / 10 + goldReward;
     }
 }

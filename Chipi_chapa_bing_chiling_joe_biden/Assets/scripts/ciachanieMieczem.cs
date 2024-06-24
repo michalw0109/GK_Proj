@@ -17,7 +17,7 @@ public class ciachanieMieczem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-0.1f, 0, 0);
+        transform.Translate(-0.2f, 0, 0);
     }
 
 
@@ -32,7 +32,7 @@ public class ciachanieMieczem : MonoBehaviour
             }
             collision.gameObject.GetComponent<Transform>().Translate(0, 1, 0);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

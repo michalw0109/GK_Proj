@@ -137,8 +137,12 @@ MonoBehaviour:
   sword: {fileID: 2572585246041971087, guid: dd81846c77df6734798dba7b82b37331, type: 3}
   dagger: {fileID: 6820603732935648573, guid: 17b170ce2a5de8a43b201ed448eb3fac, type: 3}
   plasma: {fileID: 7102842858944739344, guid: f1177a774681d1842914af55ce2e0cdd, type: 3}
+  healing: {fileID: 6648354594292708929, guid: a0f031a2974abd74fb829fda3451c69f, type: 3}
+  dashing: {fileID: 1695445200327570617, guid: a902787907bd8814cac81f64282f63f7, type: 3}
+  bomb: {fileID: 1529523451231376389, guid: 4525c2e2b6e2bd447ab7d803371a8df8, type: 3}
   enemy1: {fileID: 4254398952410720364, guid: f92298ad5302d0641a3553d9fd27f769, type: 3}
   enemy2: {fileID: 4254398952410720364, guid: 6a2ee523e3bf22a4aa0334fe3d705185, type: 3}
+  enemy3: {fileID: 4295734562342868295, guid: 708fe8adc5e537c4592121475bde9e79, type: 3}
   boxPreset: {fileID: 6571595907219276105, guid: ea3d598c7789dc247bd327017a338608, type: 3}
   czerwony: {fileID: 2100000, guid: 7c712662ed234c4498f05400bcb269fd, type: 2}
   czarny: {fileID: 2100000, guid: 73f6b17243edc1c40beabbb7dba364a2, type: 2}

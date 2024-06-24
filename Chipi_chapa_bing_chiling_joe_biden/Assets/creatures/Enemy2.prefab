@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 10
-  speed: 10
+  speed: 5
   health: 20
   gravityForce: 100
   goldReward: 20
