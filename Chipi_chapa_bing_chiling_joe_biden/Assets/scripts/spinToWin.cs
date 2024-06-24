@@ -20,7 +20,7 @@ public class spinToWin : MonoBehaviour
     void Update()
     {
         transform.position = new UnityEngine.Vector3(transform.position.x, player.transform.position.y, transform.position.z);
-        transform.RotateAround(player.transform.position, UnityEngine.Vector3.up, 8);
+        transform.RotateAround(player.transform.position, UnityEngine.Vector3.up, 5);
     }
 
 
