@@ -23,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject boss;
     private GameObject box;
     public GameObject boxPreset;
 
@@ -49,6 +50,9 @@ public class NewBehaviourScript : MonoBehaviour
     public float attackCooldown = 0.1f;
     private float attackTimer;
 
+    public float healCooldown = 1f;
+    private float healTimer;
+
     private float timer = 0f;
 
     public float timing = 0.05f;
@@ -58,11 +62,11 @@ public class NewBehaviourScript : MonoBehaviour
     private float nextBeat = 0;
 
 
-    public float enemyCooldown = 5;
+    public float enemyCooldown = 50;
     private float nextEnemy = 0;
-    private float enemySpawnScaling = 0.98f;
+    private float enemySpawnScaling = 0.99f;
     private float minEnemyCooldown = 0.5f;
-    private float enemyHealthScaling = 2f;
+    private float enemyHealthScaling = 1.02f;
     private float enemyHealthMult = 1;
 
 
@@ -87,7 +91,7 @@ public class NewBehaviourScript : MonoBehaviour
     public int hpMax = 100;
     public int gold = 0;
 
-    public int hitCooldown = 2;
+    public float hitCooldown = 0.5f;
     private float hitTimer = 0;
 
     private int shootLvl = 1;
@@ -100,13 +104,14 @@ public class NewBehaviourScript : MonoBehaviour
 
     public int points = 0;
 
-
+    private int bossCounter = 0;
+    private int bossCooldown = 20;
 
     // Start is called before the first frame update
     void Start()
     {
         camera = Instantiate(cameraPreset);
-        
+
         musicBox = Instantiate(musicBoxPreset);
 
         UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, -50, 3);
@@ -130,6 +135,29 @@ public class NewBehaviourScript : MonoBehaviour
 
         box = Instantiate(boxPreset);
         //box.transform.position = transform.position;
+
+
+        //GameObject newEnemy1;
+        //newEnemy1 = Instantiate(enemy1);
+        //enemyBehaviour enemyScript1 = newEnemy1.GetComponent<enemyBehaviour>();
+        //newEnemy1.transform.position = new UnityEngine.Vector3(0, -40, 00);
+
+        //GameObject newEnemy2;
+        //newEnemy2 = Instantiate(enemy2);
+        //enemyBehaviour enemyScript2 = newEnemy2.GetComponent<enemy2Behaviour>();
+        //newEnemy2.transform.position = new UnityEngine.Vector3(3, -40, 3);
+
+        //GameObject newEnemy3;
+        //newEnemy3 = Instantiate(enemy3);
+        //enemyBehaviour enemyScript3 = newEnemy3.GetComponent<enemy3Behaviour>();
+        //newEnemy3.transform.position = new UnityEngine.Vector3(-3, -40, -3);
+
+        //GameObject newBoss;
+        //newBoss = Instantiate(boss);
+        //enemyBehaviour enemyScript4 = newBoss.GetComponent<bossBehaviour>();
+        //newBoss.transform.position = new UnityEngine.Vector3(3, -40, -3);
+
+
     }
 
     // Update is called once per frame
@@ -186,6 +214,7 @@ public class NewBehaviourScript : MonoBehaviour
         noHitTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
         hitTimer += Time.deltaTime;
+        healTimer += Time.deltaTime;
     }
     private void toTheBeat()
     {
@@ -232,6 +261,12 @@ public class NewBehaviourScript : MonoBehaviour
             spawnEnemy(1);
             spawnEnemy(2);
             spawnEnemy(3);
+            if(bossCounter == bossCooldown)
+            {
+                spawnEnemy(4);
+                bossCounter = 0;
+            }
+            bossCounter++;
 
 
             nextEnemy += enemyCooldown;
@@ -271,8 +306,8 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
-            newEnemy = Instantiate(enemy1);
-            enemyBehaviour enemyScript = newEnemy.GetComponent<enemyBehaviour>();
+            newEnemy = Instantiate(boss);
+            bossBehaviour enemyScript = newEnemy.GetComponent<bossBehaviour>();
             enemyScript.health *= enemyHealthMult;
         }
 
@@ -494,7 +529,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             combo += 50;
             gold += 300;
-            points += 2000;
+            points += 300;
             specialCombo = 0;
         }
     }
@@ -521,8 +556,8 @@ public class NewBehaviourScript : MonoBehaviour
             newBullet.transform.position = transform.position + vec * 2.5f;
             newBullet.transform.rotation = transform.rotation;
             iNeedMoreBullets script = newBullet.GetComponent<iNeedMoreBullets>();
-            script.speed = 0.2f;
-            script.dmg = 3 * shootLvl + combo / 5;
+            script.speed = 0.3f;
+            script.dmg = 10 + 10 * shootLvl + combo;
         }
     }
 
@@ -554,7 +589,7 @@ public class NewBehaviourScript : MonoBehaviour
             newSword.transform.Rotate(90, 0, 0);
 
             ciachanieMieczem script = newSword.GetComponent<ciachanieMieczem>();
-            script.dmg = 20 + 4 * slashLvl + combo / 5;
+            script.dmg = 8 * slashLvl + combo / 2;
 
         }
     }
@@ -584,7 +619,7 @@ public class NewBehaviourScript : MonoBehaviour
             newDagger.transform.Rotate(90, 0, 0);
 
             spinToWin script = newDagger.GetComponent<spinToWin>();
-            script.dmg = 30 + 5 * spinLvl + combo / 5;
+            script.dmg = 20 + 10 * spinLvl + combo;
 
         }
     }
@@ -594,11 +629,11 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             // check do spamownia
-            if (attackTimer < attackCooldown)
+            if (healTimer < healCooldown)
             {
                 return;
             }
-            attackTimer = 0;
+            healTimer = 0;
 
 
             // tu sprawdzenie do comba
@@ -608,7 +643,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             GameObject newHeal = Instantiate(healing);
 
-            hp += 2 * healLvl + combo / 5;
+            hp += 2 * healLvl + combo;
             if ( hp > hpMax)
             {
                 hp = hpMax;
@@ -641,7 +676,7 @@ public class NewBehaviourScript : MonoBehaviour
             newPlasma.transform.rotation = transform.rotation;
             Piercing script = newPlasma.GetComponent<Piercing>();
             script.speed = 0.12f;
-            script.dmg = 2 * piercingLvl + combo / 10;
+            script.dmg = 8 * slashLvl + combo / 2;
         }
     }
 
@@ -703,7 +738,7 @@ public class NewBehaviourScript : MonoBehaviour
             newBomb.transform.position = transform.position + vec * 4f + vec2 * 2f;
             newBomb.transform.rotation = transform.rotation;
             AOE script = newBomb.GetComponent<AOE>();
-            script.dmg = 3 * AOELvl + combo / 5;
+            script.dmg = 10 + 8 * slashLvl + combo;
         }
     }
     private void upgradeHub()

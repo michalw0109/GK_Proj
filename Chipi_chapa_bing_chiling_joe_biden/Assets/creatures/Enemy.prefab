@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.61, y: 4.23, z: -0.14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,10 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61113271d60cfdf46ace3ef8f78935bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 10
   speed: 5
   health: 30
   gravityForce: 100
   goldReward: 10
+  distance: 1.3
   rb: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}

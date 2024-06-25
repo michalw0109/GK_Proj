@@ -13,10 +13,10 @@ public class enemy3Behaviour : enemyBehaviour
     {
         dmg = 20;
         speed = 25;
-        health = 10;
-        gravityForce = 10;
+        health = 5;
+        gravityForce = 200;
         goldReward = 5;
-        distance = 1.3f;
+        distance = 2.3f;
     }
 
     // Start is called before the first frame update

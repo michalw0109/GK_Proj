@@ -26,11 +26,11 @@ public class enemyBehaviour : MonoBehaviour
     private void Awake()
     {
         dmg = 10;
-        speed = 5;
+        speed = 15;
         health = 30;
-        gravityForce = 10;
+        gravityForce = 200;
         goldReward = 10;
-        distance = 1.3f;
+        distance = 2.3f;
     }
 
     // Start is called before the first frame update
@@ -76,7 +76,7 @@ public class enemyBehaviour : MonoBehaviour
 
     public void rewardPlayer()
     {
-        playerScript.gold += playerScript.combo / 10 + goldReward;
-        playerScript.points += playerScript.combo / 10 + goldReward;
+        playerScript.gold += playerScript.combo / 5 + goldReward;
+        playerScript.points += playerScript.combo / 5 + goldReward;
     }
 }

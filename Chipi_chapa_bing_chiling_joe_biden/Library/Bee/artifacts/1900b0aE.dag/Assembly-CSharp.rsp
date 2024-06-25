@@ -442,6 +442,8 @@
 "Assets/Lowpoly Toon Cat Lite/Demo/Cat_Lite_Demo.cs"
 "Assets/scripts/AOE.cs"
 "Assets/scripts/boom.cs"
+"Assets/scripts/bossBehaviour.cs"
+"Assets/scripts/bossStrzela.cs"
 "Assets/scripts/ciachanieMieczem.cs"
 "Assets/scripts/dashing.cs"
 "Assets/scripts/enemy2Behaviour.cs"

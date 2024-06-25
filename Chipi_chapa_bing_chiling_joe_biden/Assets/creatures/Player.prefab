@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9ea2411be59da49b039570bff23a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 15
-  jumpspeed: 40
-  rotationspeed: 30
+  movespeed: 20
+  jumpspeed: 30
+  rotationspeed: 50
   gravityForce: 15
   cameraPreset: {fileID: 6718454935230983232, guid: ffacb62f298bcff468f0959f3bced26b, type: 3}
   caleraZOffset: -6.65
@@ -143,19 +143,21 @@ MonoBehaviour:
   enemy1: {fileID: 4254398952410720364, guid: f92298ad5302d0641a3553d9fd27f769, type: 3}
   enemy2: {fileID: 4254398952410720364, guid: 6a2ee523e3bf22a4aa0334fe3d705185, type: 3}
   enemy3: {fileID: 4295734562342868295, guid: 708fe8adc5e537c4592121475bde9e79, type: 3}
+  boss: {fileID: 683120941905405262, guid: a5e5244285cca5d4a90163995e6459d8, type: 3}
   boxPreset: {fileID: 6571595907219276105, guid: ea3d598c7789dc247bd327017a338608, type: 3}
   czerwony: {fileID: 2100000, guid: 7c712662ed234c4498f05400bcb269fd, type: 2}
   czarny: {fileID: 2100000, guid: 73f6b17243edc1c40beabbb7dba364a2, type: 2}
   musicBoxPreset: {fileID: 4350404791091450610, guid: 6228630235b32244e81e3de6bf9c8c24, type: 3}
   attackCooldown: 0.1
+  healCooldown: 1
   timing: 0.12
-  enemyCooldown: 3
+  enemyCooldown: 6
   combo: 0
   specialCombo: 0
   hp: 100
   hpMax: 100
   gold: 0
-  hitCooldown: 2
+  hitCooldown: 0.5
   points: 0
 --- !u!65 &3140214350070474880
 BoxCollider:
