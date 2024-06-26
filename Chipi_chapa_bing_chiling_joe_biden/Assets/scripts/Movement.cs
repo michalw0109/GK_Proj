@@ -32,6 +32,33 @@ public class NewBehaviourScript : MonoBehaviour
     private GameObject musicBox;
     public GameObject musicBoxPreset;
 
+    public GameObject soundEffectAssetAggressiveMiau;
+    public GameObject soundEffectAssetAttackMiau;
+    public GameObject soundEffectAssetBoulder;
+    public GameObject soundEffectAssetDash;
+    public GameObject soundEffectAssetElectricity;
+    public GameObject soundEffectAssetFuse;
+    public GameObject soundEffectAssetFireball;
+    public GameObject soundEffectAssetUpgrade;
+    public GameObject soundEffectAssetHeal;
+    public GameObject soundEffectAssetHighMiau;
+    public GameObject soundEffectAssetMiau;
+    public GameObject soundEffectAssetSadMiau;
+    public GameObject soundEffectAssetSword;
+
+    private GameObject soundEffectAggressiveMiau;
+    private GameObject soundEffectAttackMiau;
+    private GameObject soundEffectBoulder;
+    private GameObject soundEffectDash;
+    private GameObject soundEffectElectricity;
+    private GameObject soundEffectFuse;
+    private GameObject soundEffectFireball;
+    private GameObject soundEffectUpgrade;
+    private GameObject soundEffectHeal;
+    private GameObject soundEffectHighMiau;
+    private GameObject soundEffectMiau;
+    private GameObject soundEffectSadMiau;
+    private GameObject soundEffectSword;
 
 
     private UnityEngine.KeyCode forward = KeyCode.W;
@@ -114,6 +141,8 @@ public class NewBehaviourScript : MonoBehaviour
 
         musicBox = Instantiate(musicBoxPreset);
 
+        soundEffectSadMiau = Instantiate(soundEffectAssetSadMiau);
+
         UnityEngine.Vector3 startPos = new UnityEngine.Vector3(10, -50, 3);
         UnityEngine.Vector3 startRot = new UnityEngine.Vector3(0, 0, 0);
 
@@ -133,7 +162,7 @@ public class NewBehaviourScript : MonoBehaviour
         musicBox.GetComponent<AudioSource>().Play();
         musicBox.GetComponent<AudioSource>().Stop();
 
-        box = Instantiate(boxPreset);
+        //box = Instantiate(boxPreset);
         //box.transform.position = transform.position;
 
 
@@ -196,8 +225,14 @@ public class NewBehaviourScript : MonoBehaviour
                     hp -= script.dmg;
                     if (hp < 0)
                     {
+                        soundEffectHighMiau = Instantiate(soundEffectAssetHighMiau);
+                        soundEffectHighMiau.GetComponent<AudioSource>().Play(); // umiera
+                        Destroy(soundEffectHighMiau, 5f);
                         Destroy(gameObject);
                     }
+                    soundEffectAggressiveMiau = Instantiate(soundEffectAssetAggressiveMiau);
+                    soundEffectAggressiveMiau.GetComponent<AudioSource>().Play(); // obrazenia
+                    Destroy(soundEffectAggressiveMiau, 3f);
                     hitTimer = 0;
                 }
                 
@@ -225,11 +260,11 @@ public class NewBehaviourScript : MonoBehaviour
             counter++;
             if (counter % 2 == 0)
             {
-                box.GetComponent<MeshRenderer>().material = czerwony;
+                //box.GetComponent<MeshRenderer>().material = czerwony;
             }
             else
             {
-                box.GetComponent<MeshRenderer>().material = czarny;
+                //box.GetComponent<MeshRenderer>().material = czarny;
             }
         }
     }
@@ -335,6 +370,9 @@ public class NewBehaviourScript : MonoBehaviour
         // jump
         if (Input.GetKeyDown(jump) && can_jump)
         {
+            soundEffectMiau = Instantiate(soundEffectAssetMiau);
+            soundEffectMiau.GetComponent<AudioSource>().Play(); // skok
+            Destroy(soundEffectMiau, 3f);
             rb.velocity = new UnityEngine.Vector3(rb.velocity.x, jumpspeed, rb.velocity.z);
         }
 
@@ -544,6 +582,12 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
+            soundEffectFireball = Instantiate(soundEffectAssetFireball);
+            soundEffectFireball.GetComponent<AudioSource>().Play(); // fireball
+            Destroy(soundEffectFireball, 5f);
+            soundEffectAttackMiau = Instantiate(soundEffectAssetAttackMiau);
+            soundEffectAttackMiau.GetComponent<AudioSource>().Play(); // attack
+            Destroy(soundEffectAttackMiau, 3f);
 
             // tu sprawdzenie do comba
             checkAttackInBeat('Y');
@@ -574,8 +618,12 @@ public class NewBehaviourScript : MonoBehaviour
 
             //Debug.Log(combo);
 
-
-
+            soundEffectSword = Instantiate(soundEffectAssetSword);
+            soundEffectSword.GetComponent<AudioSource>().Play(); // sword
+            Destroy(soundEffectSword, 3f);
+            soundEffectAttackMiau = Instantiate(soundEffectAssetAttackMiau);
+            soundEffectAttackMiau.GetComponent<AudioSource>().Play(); // attack
+            Destroy(soundEffectAttackMiau, 3f);
             // tu sprawdzenie do comba
             checkAttackInBeat('U');
             //Debug.Log(specialCombo);
@@ -604,8 +652,12 @@ public class NewBehaviourScript : MonoBehaviour
                 return;
             }
             attackTimer = 0;
-
-
+            soundEffectElectricity = Instantiate(soundEffectAssetElectricity);
+            soundEffectElectricity.GetComponent<AudioSource>().Play(); // electricity
+            Destroy(soundEffectElectricity, 5f);
+            soundEffectAttackMiau = Instantiate(soundEffectAssetAttackMiau);
+            soundEffectAttackMiau.GetComponent<AudioSource>().Play(); // attack
+            Destroy(soundEffectAttackMiau, 3f);
             // tu sprawdzenie do comba
             checkAttackInBeat('I');
             //Debug.Log(specialCombo);
@@ -635,6 +687,9 @@ public class NewBehaviourScript : MonoBehaviour
             }
             healTimer = 0;
 
+            soundEffectHeal = Instantiate(soundEffectAssetHeal);
+            soundEffectHeal.GetComponent<AudioSource>().Play(); // heal
+            Destroy(soundEffectHeal, 3f);
 
             // tu sprawdzenie do comba
             checkAttackInBeat('O');
@@ -663,7 +718,12 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
-
+            soundEffectBoulder = Instantiate(soundEffectAssetBoulder);
+            soundEffectBoulder.GetComponent<AudioSource>().Play(); // boulder
+            Destroy(soundEffectBoulder, 5f);
+            soundEffectAttackMiau = Instantiate(soundEffectAssetAttackMiau);
+            soundEffectAttackMiau.GetComponent<AudioSource>().Play(); // attack
+            Destroy(soundEffectAttackMiau, 3f);
             // tu sprawdzenie do comba
             checkAttackInBeat('P');
 
@@ -691,7 +751,9 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
-
+            soundEffectDash = Instantiate(soundEffectAssetDash);
+            soundEffectDash.GetComponent<AudioSource>().Play(); // dash
+            Destroy(soundEffectDash, 3f);
             // tu sprawdzenie do comba
             checkAttackInBeat('R');
             //Debug.Log(specialCombo);
@@ -726,7 +788,12 @@ public class NewBehaviourScript : MonoBehaviour
             }
             attackTimer = 0;
 
-
+            soundEffectFuse = Instantiate(soundEffectAssetFuse);
+            soundEffectFuse.GetComponent<AudioSource>().Play(); // explosion
+            Destroy(soundEffectFuse, 5f);
+            soundEffectAttackMiau = Instantiate(soundEffectAssetAttackMiau);
+            soundEffectAttackMiau.GetComponent<AudioSource>().Play(); // attack
+            Destroy(soundEffectAttackMiau, 3f);
             // tu sprawdzenie do comba
             checkAttackInBeat('T');
 
@@ -781,6 +848,10 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * shootLvl;
                     shootLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
+
                 }
                 break;
             case 'U':
@@ -788,6 +859,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * slashLvl;
                     slashLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
             case 'I':
@@ -795,6 +869,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * spinLvl;
                     spinLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
             case 'O':
@@ -802,6 +879,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * healLvl;
                     healLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
             case 'P':
@@ -809,6 +889,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * piercingLvl;
                     piercingLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
             case 'R':
@@ -816,6 +899,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * dashLvl;
                     dashLvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
             case 'T':
@@ -823,6 +909,9 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     gold -= 100 * AOELvl;
                     AOELvl++;
+                    soundEffectUpgrade = Instantiate(soundEffectAssetUpgrade);
+                    soundEffectUpgrade.GetComponent<AudioSource>().Play(); // upgrade
+                    Destroy(soundEffectUpgrade, 3f);
                 }
                 break;
 

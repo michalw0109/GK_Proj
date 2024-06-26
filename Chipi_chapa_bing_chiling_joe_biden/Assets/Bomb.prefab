@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e670e6692be2245a8289150a749a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffectAssetExplosion: {fileID: 5743543466855196913, guid: d6d7866df1fadb144b44c3def1fff086, type: 3}
   shockWave: {fileID: 6571847093721320798, guid: 73e3efd4d3811f4478f4f79d70737d9c, type: 3}
   dmg: 0
 --- !u!1 &7976556135553447975

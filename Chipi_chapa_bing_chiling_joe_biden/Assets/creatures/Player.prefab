@@ -148,6 +148,19 @@ MonoBehaviour:
   czerwony: {fileID: 2100000, guid: 7c712662ed234c4498f05400bcb269fd, type: 2}
   czarny: {fileID: 2100000, guid: 73f6b17243edc1c40beabbb7dba364a2, type: 2}
   musicBoxPreset: {fileID: 4350404791091450610, guid: 6228630235b32244e81e3de6bf9c8c24, type: 3}
+  soundEffectAssetAggressiveMiau: {fileID: 5878425596888117412, guid: 4dc6e39900ed76e49b3f361a13c48412, type: 3}
+  soundEffectAssetAttackMiau: {fileID: 9048884314244615911, guid: b8fb02d72cc2f124c960e99af5a9bba2, type: 3}
+  soundEffectAssetBoulder: {fileID: 4782373315488206035, guid: 01eb2019f3bc68d49ba0fcbd1d489e56, type: 3}
+  soundEffectAssetDash: {fileID: 7538778288201054245, guid: 37b2447e2dcfbb8479dca5b1e5ded8f7, type: 3}
+  soundEffectAssetElectricity: {fileID: 4696160235235262647, guid: e0c61ea1d09ea6444b93310e494c3c08, type: 3}
+  soundEffectAssetFuse: {fileID: 2450931157939793127, guid: 63c4d2f87c7a58449ad60bbd164cfd19, type: 3}
+  soundEffectAssetFireball: {fileID: 4260244530341700485, guid: e92d4946147d8954bbf09c13f7eeec0c, type: 3}
+  soundEffectAssetUpgrade: {fileID: 5322510463153902633, guid: e4f4cf0a2c3fe45469c7f92d48efbf46, type: 3}
+  soundEffectAssetHeal: {fileID: 607165569757318464, guid: 2e68038e759f2114eb8f55356b85e215, type: 3}
+  soundEffectAssetHighMiau: {fileID: 3732236918259177321, guid: d5d65eddf9c946244b90d13e7a9ee713, type: 3}
+  soundEffectAssetMiau: {fileID: 1723449597139617282, guid: f20813e6f8e2c71489d31dc6657b42ba, type: 3}
+  soundEffectAssetSadMiau: {fileID: 6590925765319193210, guid: 2ec8733c540ee604b8850faf773d4f96, type: 3}
+  soundEffectAssetSword: {fileID: 7297212450021028245, guid: 2809843abd4ed084495e57562f7887d3, type: 3}
   attackCooldown: 0.1
   healCooldown: 1
   timing: 0.12
